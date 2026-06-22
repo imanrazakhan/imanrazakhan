@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mapping salvage yards</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+</head>
+<body class="page-map" id="page-map">
+
+  <header class="site-header">
+    <a href="index.html" class="site-title">Treading Lightly: finding abundance and care in the discarded</a>
+  </header>
+
+  <div class="map-heading">
+    <h1>Mapping Recovered Materials</h1>
+    <p class="sub">Auckland, New Zealand — salvage &amp; reclamation yards</p>
+  </div>
+
+  <div class="map-box" id="map-box">
+    <div id="leaflet-map"></div>
+  </div>
+
+  <p class="hint">click anywhere outside the map to continue &rarr;</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+
+  document.getElementById('page-map').addEventListener('click', function(e){
+    if (!e.target.closest('#map-box') && !e.target.closest('.site-header')) {
+      window.location.href = 'marketplace.html';
+    }
+  });
+
+  var yards = [
+    { name: "Burrell Salvage", address: "29 Leslie Ave, Morningside, Auckland 1025", lat: -36.8838, lng: 174.7344 },
+    { name: "Ward Salvage (Ward Demolition)", address: "18 Angle St, Onehunga, Auckland 1061", lat: -36.9239, lng: 174.7805 },
+    { name: "Kauri Warehouse", address: "75 Huia Road, Otahuhu, Auckland 1062", lat: -36.9460, lng: 174.8330 },
+    { name: "DKL Projects", address: "Whenuapai, Auckland", lat: -36.7890, lng: 174.6310 }
+  ];
+
+  var map = L.map('leaflet-map', { scrollWheelZoom: false });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  var pinIcon = L.divIcon({ className: 'salvage-pin', iconSize: [10, 10] });
+  var bounds = [];
+
+  yards.forEach(function(y){
+    L.marker([y.lat, y.lng], { icon: pinIcon })
+      .addTo(map)
+      .bindPopup('<b>' + y.name + '</b><br>' + y.address);
+    bounds.push([y.lat, y.lng]);
+  });
+
+  map.fitBounds(bounds, { padding: [40, 40] });
+  setTimeout(function(){ map.invalidateSize(); }, 100);
+
+</script>
+</body>
+</html>

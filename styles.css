@@ -1,0 +1,200 @@
+/* ============ shared base ============ */
+
+* { box-sizing: border-box; }
+
+html, body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100vh;
+  background:#fff;
+  color:#000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:12px;
+  line-height:1.6;
+}
+
+a{ color:#000; text-decoration:none; }
+
+/* ============ shared site header (all pages) ============ */
+
+.site-header{
+  position:fixed;
+  top:24px;
+  left:5vw;
+  z-index:20;
+}
+
+.site-title{
+  font-size:12px;
+  font-weight:bold;
+  color:#000;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.site-title:hover{ text-decoration:underline; }
+
+/* ============ page 1: title ============ */
+
+body.page-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  height:100vh;
+}
+
+.title-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  max-width:480px;
+  padding:0 24px;
+}
+
+.title-text{
+  font-size:12px;
+  font-weight:bold;
+  color:#000;
+}
+
+.tooltip{
+  position:fixed;
+  bottom:calc(14% + 2cm);
+  right:18%;
+  width:260px;
+  border:1px dashed #000;
+  padding:14px 16px;
+  font-size:12px;
+  font-weight:normal;
+  text-align:left;
+  background:#fff;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(6px);
+  transition:opacity .15s ease, transform .15s ease, visibility .15s;
+}
+
+.title-wrap:hover .tooltip,
+.title-wrap:focus-within .tooltip{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+@media (max-width: 700px){
+  .tooltip{ right:8%; left:8%; width:auto; bottom:calc(10% + 2cm); }
+}
+
+/* ============ page 2: map ============ */
+
+body.page-map{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:96px 5vw 70px;
+  cursor:pointer;
+  min-height:100vh;
+}
+
+.map-heading{
+  width:100%;
+  max-width:1100px;
+  text-align:left;
+  margin-bottom:18px;
+}
+
+.map-heading h1{
+  font-size:12px;
+  font-weight:normal;
+  margin:0;
+}
+
+.map-heading .sub{
+  font-size:11px;
+  font-style:italic;
+  color:#555;
+  margin:4px 0 0;
+  font-weight:normal;
+}
+
+.map-box{
+  border:1px dashed #000;
+  width:100%;
+  max-width:1100px;
+  height:60vh;
+  min-height:380px;
+  cursor:default;
+}
+
+#leaflet-map{
+  width:100%;
+  height:100%;
+}
+
+.leaflet-popup-content{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:12px;
+  color:#000;
+  line-height:1.5;
+}
+
+.salvage-pin{
+  background:#000;
+  width:10px;
+  height:10px;
+  display:block;
+}
+
+.hint{
+  position:absolute;
+  bottom:24px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:11px;
+  color:#666;
+  pointer-events:none;
+}
+
+/* ============ page 3: marketplace ============ */
+
+body.page-market{
+  padding:96px 5vw 60px;
+}
+
+.market-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:36px 28px;
+  max-width:1100px;
+}
+
+.market-item{ display:flex; flex-direction:column; }
+
+.market-image{
+  border:1px solid #000;
+  aspect-ratio:1/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18%;
+}
+
+.market-image svg{
+  width:100%;
+  height:100%;
+  stroke:#000;
+  fill:none;
+  stroke-width:1.4;
+}
+
+.market-caption{ margin-top:10px; font-size:12px; }
+.market-caption .name{ display:block; margin-bottom:4px; }
+.market-caption .blurb{ display:block; color:#333; }
+.market-caption .available{ display:block; margin-top:6px; color:#666; font-style:italic; }
+
+@media (max-width: 720px){ .market-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width: 480px){ .market-grid{ grid-template-columns:1fr; } }

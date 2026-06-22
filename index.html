@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treading Lightly: finding abundance and care in the discarded</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-title" id="page-title">
+
+  <header class="site-header">
+    <a href="index.html" class="site-title">Treading Lightly: finding abundance and care in the discarded</a>
+  </header>
+
+  <div class="title-wrap" tabindex="0">
+    <span class="title-text">Iman Raza Khan</span>
+    <div class="tooltip">Iman is a doctoral researcher at Monash School of Art, Design and Architecture (MADA), an educator in Tāmaki Makaurau, and architectural designer.</div>
+  </div>
+
+<script>
+  function goNext(){
+    window.location.href = 'map.html';
+  }
+  document.getElementById('page-title').addEventListener('click', goNext);
+  document.getElementById('page-title').addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goNext(); }
+  });
+  document.querySelector('.site-header').addEventListener('click', function(e){
+    e.stopPropagation();
+  });
+</script>
+</body>
+</html>
